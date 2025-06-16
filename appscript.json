@@ -1,0 +1,66 @@
+{
+  "timeZone": "America/New_York",
+  "exceptionLogging": "STACKDRIVER",
+  "runtimeVersion": "V8",
+  "dependencies": {
+    "enabledAdvancedServices": [
+      {
+        "userSymbol": "Calendar",
+        "serviceId": "calendar",
+        "version": "v3"
+      }
+    ]
+  },
+  "oauthScopes": [
+    "https://www.googleapis.com/auth/calendar.settings.readonly",
+    "https://www.googleapis.com/auth/calendar.addons.execute",
+    "https://www.googleapis.com/auth/script.locale",
+    "https://www.googleapis.com/auth/calendar.addons.current.event.read",
+    "https://www.googleapis.com/auth/calendar.addons.current.event.write",
+    "https://www.googleapis.com/auth/script.external_request",
+    "https://www.googleapis.com/auth/calendar.events.readonly",
+    "https://www.googleapis.com/auth/script.scriptapp"
+  ],
+  "urlFetchWhitelist": [
+    "https://staging.educastic.com/api",
+    "https://www.educastic.com/api"
+  ],
+  "addOns": {
+    "common": {
+      "name": "Educastic",
+      "logoUrl": "https://www.educastic.com/freemium/images/favicon.png",
+      "useLocaleFromApp": true,
+      "homepageTrigger": {
+        "runFunction": "onHomepage",
+        "enabled": true
+      },
+      "universalActions": [
+        {
+          "label": "Learn more about Educastic",
+          "openLink": "https://www.educastic.com/what-educastic/en"
+        },
+        {
+          "label": "Sign Out",
+          "runFunction": "handleLogout"
+        }
+      ]
+    },
+    "calendar": {
+      "currentEventAccess": "READ_WRITE",
+      "eventOpenTrigger": {
+        "runFunction": "onCalendarEventOpen"
+      },
+      "eventUpdateTrigger": {
+        "runFunction": "onCalendarEventUpdate"
+      },
+      "conferenceSolution": [
+        {
+          "onCreateFunction": "createConference",
+          "id": "educasticConference",
+          "name": "Educastic Meeting",
+          "logoUrl": "https://lh3.googleusercontent.com/-BiB4I2qRDmY/ZmwYC3R0y7I/AAAAAAAAAIw/_gLjCq7ub4gT6uSMLPhOCwhiCdgjh1-EQCNcBGAsYHQ/s400/Educastic%2BIcon%2B96X96.jpg"
+        }
+      ]
+    }
+  }
+}
