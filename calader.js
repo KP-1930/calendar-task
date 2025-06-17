@@ -1,17 +1,6 @@
 function onCalendarEventOpen(event) {
   console.log('onCalendarEventOpen called', event);
 
-  // let calendarEvent;
-
-  // try {
-  //   calendarEvent = Calendar.Events.get(event.calendar.calendarId, event.calendar.id);
-  // } catch (err) {
-  //   console.log(err);
-  //   calendarEvent = undefined
-  // }
-
-  // console.log('calendarEvent', event);
-
   const eventCalendarData = event.calendar;
 
   if (!("canSetConferenceData" in eventCalendarData.capabilities)) {
@@ -216,44 +205,8 @@ function createConference(arg) {
 function create3rdPartyConference(calendarEvent) {
   console.log('create3rdPartyConference > calendarEvent', calendarEvent)
 
-  const apiKey = getPropertyData('API_KEY');
-  if (!apiKey) {
-    return { error: 'AUTH' };
-  }
-
-  const token = getPropertyData('API_KEY');
-  const url = `${BASE_URL_API}/create/educast`;
-
-  var formData = {
-    'educast_google_event_id': calendarEvent.id
-  };
-
-  console.log('token', token)
-  console.log('formData', formData)
-
-  var options = {
-    'muteHttpExceptions': true,
-    'method': 'post',
-    'headers': {
-      'Content-Type': 'application/json',
-      'Accept': 'application/json',
-      'Authorization': `Bearer ${token}`
-    },
-    'payload': JSON.stringify(formData)
-  };
-
-  try {
-    const response = UrlFetchApp.fetch(url, options);
-    const result = JSON.parse(response.getContentText());
-    console.log('result', result);
-    if (result.error) {
-      return result.error;
-    }
-    return result.data;
-  } catch (e) {
-    console.log('create3rdPartyConference', e)
-    return { error: e };
-  }
+  // Implementation details dependent on the third-party system.
+  return {};
 }
 
 /**
@@ -263,7 +216,7 @@ function create3rdPartyConference(calendarEvent) {
  *  @return {String}
  */
 function getAuthenticationUrl() {
-  var url = "https://educastic.com/";
+  var url = "url";
   // Implementation details dependent on the third-party system.
 
   return url;
@@ -438,7 +391,7 @@ function updateConference(calEvent, conferenceId) {
   console.log('updateConference')
 
   const token = getPropertyData('API_KEY');
-  const url = `${BASE_URL_API}/update/educast`;
+  const url = url;
 
   if(!token) {
     return false;
@@ -492,49 +445,9 @@ function updateConference(calEvent, conferenceId) {
 }
 
 function deleteConference(eventId) {
-  console.log('deleteConference', eventId)
-
-  const token = getPropertyData('API_KEY');
-  const url = `${BASE_URL_API}/delete/educast`;
-
-  if(!token) {
-    return false;
-  }
-
-  var formData = {
-    'educast_google_event_id': eventId
-  };
-
-  var options = {
-    'muteHttpExceptions': true,
-    'method': 'post',
-    'headers': {
-      'Content-Type': 'application/json',
-      'Accept': 'application/json',
-      'Authorization': `Bearer ${token}`
-    },
-    'payload': JSON.stringify(formData)
-  };
-
-  console.log('options', options);
-  console.log('formData', formData);
-
-  try {
-    const response = UrlFetchApp.fetch(url, options);
-    const result = JSON.parse(response.getContentText());
-    console.log('result', result);
-    if (result.error) {
-      return result.error;
-    }
-    return result.data;
-  } catch (e) {
-    return { error: e };
-  }
+  console.log('deleteConference')
 }
 
 function showConfigurationSidebar() {
   return HtmlService.createHtmlOutputFromFile('Sidebar');
-  // const htmlOutput = HtmlService.createHtmlOutputFromFile('Sidebar')
-  //   .setTitle('API Key Configuration');
-  // CalendarApp.getUi().showSidebar(htmlOutput);
 }

@@ -131,14 +131,7 @@ function isValidApiKey(token) {
 }
 
 function handleLogout(e) {
-  removePropertyData('API_KEY');
-  removePropertyData('educastUserName');
-  removePropertyData('educastUserEmail');
-  removePropertyData('educastUserImage');
-  return CardService.newActionResponseBuilder()
-    .setNotification(CardService.newNotification().setText('Logged out successfully.'))
-    .setNavigation(CardService.newNavigation().updateCard(createConfigurationCard()))
-    .build();
+  //logout
 }
 
 function storePropertyData(key, data) {
@@ -154,22 +147,5 @@ function removePropertyData(key) {
 }
 
 function handleSaveApiKey(e) {
-  const apiKey = e.formInput.apiKey;
-
-  const isValid = isValidApiKey(apiKey);
-  console.log(isValid)
-
-  if (isValid) {
-    const card = buildCard();
-    return CardService.newActionResponseBuilder()
-      .setNavigation(CardService.newNavigation().updateCard(card))
-      .setNotification(CardService.newNotification()
-        .setText('API key saved successfully.'))
-      .build();
-  } else {
-    const card = createConfigurationCard('Invalid API key. Please try again.');
-    return CardService.newActionResponseBuilder()
-      .setNavigation(CardService.newNavigation().updateCard(card))
-      .build();
-  }
+ // save api key
 }

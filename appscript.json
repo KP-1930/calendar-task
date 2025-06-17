@@ -22,13 +22,12 @@
     "https://www.googleapis.com/auth/script.scriptapp"
   ],
   "urlFetchWhitelist": [
-    "https://staging.educastic.com/api",
-    "https://www.educastic.com/api"
+  
   ],
   "addOns": {
     "common": {
       "name": "Educastic",
-      "logoUrl": "https://www.educastic.com/freemium/images/favicon.png",
+      "logoUrl": "logourl",
       "useLocaleFromApp": true,
       "homepageTrigger": {
         "runFunction": "onHomepage",
@@ -37,11 +36,7 @@
       "universalActions": [
         {
           "label": "Learn more about Educastic",
-          "openLink": "https://www.educastic.com/what-educastic/en"
-        },
-        {
-          "label": "Sign Out",
-          "runFunction": "handleLogout"
+          "openLink": ""
         }
       ]
     },
@@ -58,7 +53,7 @@
           "onCreateFunction": "createConference",
           "id": "educasticConference",
           "name": "Educastic Meeting",
-          "logoUrl": "https://lh3.googleusercontent.com/-BiB4I2qRDmY/ZmwYC3R0y7I/AAAAAAAAAIw/_gLjCq7ub4gT6uSMLPhOCwhiCdgjh1-EQCNcBGAsYHQ/s400/Educastic%2BIcon%2B96X96.jpg"
+          "logoUrl": "logoUrl"
         }
       ]
     }
